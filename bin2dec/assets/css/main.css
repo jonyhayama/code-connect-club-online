@@ -1,0 +1,167 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #f5f5f5;
+}
+
+main {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.input,
+.output {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.output input,
+.input input {
+  --otp-digits: 0;
+  --otp-fz: 1.85em;
+  --otp-ls: 2ch;
+  --otp-gap: 1.25;
+
+  /* private consts */
+  --_otp-bgsz: calc(var(--otp-ls) + 1ch);
+  --_otp-digit: 0;
+  --_otp-digit-calc: -1;
+
+  all: unset;
+  background: 
+  linear-gradient(90deg, 
+    var(--otp-bg, #BBB) calc(var(--otp-gap) * var(--otp-ls)),
+    transparent 0),
+    linear-gradient(90deg, 
+    var(--otp-bg, #EEE) calc(var(--otp-gap) * var(--otp-ls)),
+    transparent 0
+  );
+  background-position: calc(var(--_otp-digit-calc) * var(--_otp-bgsz)) 0, 0 0;
+  background-repeat: no-repeat, repeat-x;
+  background-size: var(--_otp-bgsz) 100%;
+  caret-color: var(--otp-cc, #222);
+  caret-shape: block;
+  clip-path: inset(0% calc(var(--otp-ls) / 2) 0% 0%);
+  font-family: ui-monospace, monospace;
+  font-size: var(--otp-fz, 2.5em);
+  inline-size: calc(var(--otp-digits) * var(--_otp-bgsz));
+  letter-spacing: var(--otp-ls);
+  padding-block: var(--otp-pb, 1ch);
+  padding-inline-start: calc(((var(--otp-ls) - 1ch) / 2) * var(--otp-gap));
+}
+.output input:focus {
+  --_otp-digit-calc: var(--_otp-digit);
+}
+
+.output[data-error]:after {
+  content: attr(data-error);
+  color: #f44336;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.binary-input-wrapper {
+  margin-bottom: 20px;
+}
+
+.binary-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(0%,1fr));
+  grid-gap: 0.25em;
+}
+.binary-checkboxes input {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  /* opacity: 0; */
+  -webkit-appearance: none;
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 3rem;
+  font-family: ui-monospace, monospace;
+  background: #eee;
+}
+.binary-checkboxes input:before {
+  content: '0';
+}
+.binary-checkboxes input:checked:before {
+  content: '1';
+}
+.binary-checkboxes input:checked {
+  background: #4caf50;
+  color: #fff;
+}
+
+/* For this demo */
+label span {
+  display: block;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  margin-block-end: 1ch;
+}
+
+label {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+input.output {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+input:disabled {
+  background-color: #f5f5f5;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+button#convert {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+button#clear {
+  background-color: #f44336;
+  color: #fff;
+}
